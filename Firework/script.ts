@@ -60,7 +60,6 @@ namespace testfirework {
                 crc2.fillStyle = color;
                 crc2.fill();
                 crc2.save();
-        */
 
         if (valueCircle) {
             //drawing circle
@@ -80,6 +79,7 @@ namespace testfirework {
             crc2.closePath();
             crc2.save();
         }
+        */
 
         //drawing circle
         crc2.beginPath();

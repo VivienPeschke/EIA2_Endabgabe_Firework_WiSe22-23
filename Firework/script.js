@@ -43,25 +43,26 @@ var testfirework;
                 crc2.fillStyle = color;
                 crc2.fill();
                 crc2.save();
-        */
+
         if (valueCircle) {
             //drawing circle
-            testfirework.crc2.beginPath();
-            testfirework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
-            testfirework.crc2.fillStyle = color;
-            testfirework.crc2.fill();
-            testfirework.crc2.closePath();
-            testfirework.crc2.save();
-        }
-        else if (valueSquare) {
+            crc2.beginPath();
+            crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
+            crc2.fillStyle = color;
+            crc2.fill();
+            crc2.closePath();
+            crc2.save();
+
+        } else if (valueSquare) {
             //drawing square
-            testfirework.crc2.beginPath();
-            testfirework.crc2.fillRect(mousePositionX - 8, mousePositionY - 8, size, size);
-            testfirework.crc2.fillStyle = color;
-            testfirework.crc2.fill();
-            testfirework.crc2.closePath();
-            testfirework.crc2.save();
+            crc2.beginPath();
+            crc2.fillRect(mousePositionX - 8, mousePositionY - 8, size, size);
+            crc2.fillStyle = color;
+            crc2.fill();
+            crc2.closePath();
+            crc2.save();
         }
+        */
         //drawing circle
         testfirework.crc2.beginPath();
         testfirework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
