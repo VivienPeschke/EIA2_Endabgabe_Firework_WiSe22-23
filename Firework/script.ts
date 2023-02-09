@@ -5,7 +5,7 @@
     * Quellen: -
     */
 
-namespace testfirework {
+namespace Firework {
 
     export let crc2: CanvasRenderingContext2D;
     let canvas: HTMLCanvasElement;

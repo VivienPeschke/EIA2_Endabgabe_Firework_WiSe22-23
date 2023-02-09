@@ -1,6 +1,6 @@
 "use strict";
-var testfirework;
-(function (testfirework) {
+var Firework;
+(function (Firework) {
     class Vector {
         x;
         y;
@@ -19,6 +19,6 @@ var testfirework;
             return new Vector(this.x, this.y);
         }
     }
-    testfirework.Vector = Vector;
-})(testfirework || (testfirework = {}));
+    Firework.Vector = Vector;
+})(Firework || (Firework = {}));
 //# sourceMappingURL=Vector.js.map

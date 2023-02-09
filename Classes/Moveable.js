@@ -1,6 +1,6 @@
 "use strict";
-var testfirework;
-(function (testfirework) {
+var Firework;
+(function (Firework) {
     class Moveable {
         position;
         velocity;
@@ -10,22 +10,22 @@ var testfirework;
                 this.position = _position;
             }
             else {
-                this.position = new testfirework.Vector(0, 0);
-                this.velocity = new testfirework.Vector(0, 0);
+                this.position = new Firework.Vector(0, 0);
+                this.velocity = new Firework.Vector(0, 0);
             }
         }
         moveForward() {
             this.position.x += this.position.y * +0.5;
             if (this.position.x < 0) {
-                this.position.x = this.position.x + testfirework.crc2.canvas.width;
+                this.position.x = this.position.x + Firework.crc2.canvas.width;
             }
-            if (this.position.x > testfirework.crc2.canvas.width) {
-                this.position.x = this.position.x - testfirework.crc2.canvas.width;
+            if (this.position.x > Firework.crc2.canvas.width) {
+                this.position.x = this.position.x - Firework.crc2.canvas.width;
             }
         }
         // tslint:disable-next-line: no-empty
         draw() { }
     }
-    testfirework.Moveable = Moveable;
-})(testfirework || (testfirework = {}));
+    Firework.Moveable = Moveable;
+})(Firework || (Firework = {}));
 //# sourceMappingURL=Moveable.js.map

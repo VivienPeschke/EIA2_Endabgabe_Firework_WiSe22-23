@@ -5,8 +5,8 @@
     * Datum: 08.02.2023
     * Quellen: -
     */
-var testfirework;
-(function (testfirework) {
+var Firework;
+(function (Firework) {
     let canvas;
     let color;
     let size;
@@ -15,7 +15,7 @@ var testfirework;
     function handleLoad(_event) {
         document.getElementById("canvas")?.addEventListener("click", clickCircle);
         canvas = document.getElementsByTagName("canvas")[0];
-        testfirework.crc2 = canvas.getContext("2d");
+        Firework.crc2 = canvas.getContext("2d");
     }
     function clickCircle(_event) {
         let rect = canvas.getBoundingClientRect();
@@ -32,12 +32,12 @@ var testfirework;
         }
         console.log(amount, size, color);
         //drawing circle
-        testfirework.crc2.beginPath();
-        testfirework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
-        testfirework.crc2.fillStyle = color;
-        testfirework.crc2.fill();
-        testfirework.crc2.closePath();
-        testfirework.crc2.save();
+        Firework.crc2.beginPath();
+        Firework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
+        Firework.crc2.fillStyle = color;
+        Firework.crc2.fill();
+        Firework.crc2.closePath();
+        Firework.crc2.save();
         /*      //drawing triangle (ignore till end)
                 crc2.beginPath();
                 crc2.moveTo(mousePositionX, mousePositionY);
@@ -78,5 +78,5 @@ var testfirework;
             }
         */
     }
-})(testfirework || (testfirework = {}));
+})(Firework || (Firework = {}));
 //# sourceMappingURL=script.js.map

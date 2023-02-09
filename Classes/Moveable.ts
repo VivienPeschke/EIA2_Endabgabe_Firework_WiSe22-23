@@ -1,4 +1,4 @@
-namespace testfirework {
+namespace Firework {
 
     export class Moveable {
         position: Vector;
