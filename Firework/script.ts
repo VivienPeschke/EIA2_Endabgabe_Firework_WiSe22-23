@@ -13,6 +13,8 @@ namespace testfirework {
     let color: string;
     let size: number;
     let amount: number;
+ //   let lifetime: number;
+    let shape: string;
 
 
     window.addEventListener("load", handleLoad);
@@ -22,7 +24,6 @@ namespace testfirework {
         document.getElementById("canvas")?.addEventListener("click", clickCircle);
 
         canvas = document.getElementsByTagName("canvas")[0];
-        crc2 = canvas.getContext("2d")!;
     }
 
     function clickCircle(_event: MouseEvent): void {
@@ -38,13 +39,27 @@ namespace testfirework {
 
         let formData: FormData = new FormData(document.forms[0]);
         for (let _entry of formData) {
-            amount = Number(formData.get("particles"));
+            amount = Number(formData.get("amount"));
             size = Number(formData.get("size"));
+        //    lifetime = Number(formData.get("lifetime"));
+            shape = String(formData.get("shape"));
             color = String(formData.get("color-picker"));
 
         }
         console.log(amount, size, color);
 
+        /*      //drawing triangle (ignore till end)
+                crc2.beginPath();
+                crc2.moveTo(mousePositionX, mousePositionY);
+                crc2.lineTo(mousePositionX + 100, mousePositionY + 200);
+                crc2.lineTo(mousePositionX + 150, mousePositionY + 20);
+                crc2.closePath();
+                crc2.fillStyle = color;
+                crc2.fill();
+                crc2.save();
+        */
+
+        //drawing circle
         crc2.beginPath();
         crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
         crc2.fillStyle = color;
@@ -52,38 +67,14 @@ namespace testfirework {
         crc2.closePath();
         crc2.save();
 
+
+        //drawing square
+        crc2.beginPath();
+        crc2.fillRect(mousePositionX - 8, mousePositionY - 8, size, size);
+        crc2.fillStyle = color;
+        crc2.fill();
+        crc2.closePath();
+        crc2.save();
     }
-
-
-
-    /*
-        window.addEventListener("load", handleLoad);
-    
-        //Funktion handleLoad um alle "Listeners" zu installieren
-        function handleLoad(): void {
-            canvas = document.getElementsByTagName("canvas")[0];
-            crc2 = canvas.getContext("2d")!;
-            document.addEventListener("click", logInfo);
-        }
-    
-        function logInfo(_event: Event): void {
-            console.log(_event);
-        }
-        /*
-            function firework(_event: Event): void {
-        
-            } 
-            
-        // Zum Ausprobieren schießen wir am Beginn
-        // eine einzelne Rakete ab. Das werden wir in unseren
-        // Übungen ändern, damit das Feuerwerk spannender wird.
-        //
-        // Größe der Explosion -------------------------------+
-        // Höhe (0 bis 100) ------------------------------+   |
-        // X-Position (horizontal) ----------+            |   |
-        // Farbe -------------------+        |            |   |
-        //                          V        V            V   V
-        fireworks.push(new Firework(75, (p.width * 1) / 4, 75, 5)); //1. Wert: Farbe, 2. Wert:  */
-
 
 }
