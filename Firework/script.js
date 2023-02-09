@@ -13,6 +13,8 @@ var testfirework;
     let amount;
     //   let lifetime: number;
     let shape;
+    let valueCircle = document.getElementById("circle");
+    let valueSquare = document.getElementById("square");
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         document.getElementById("canvas")?.addEventListener("click", clickCircle);
@@ -42,6 +44,24 @@ var testfirework;
                 crc2.fill();
                 crc2.save();
         */
+        if (valueCircle) {
+            //drawing circle
+            testfirework.crc2.beginPath();
+            testfirework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
+            testfirework.crc2.fillStyle = color;
+            testfirework.crc2.fill();
+            testfirework.crc2.closePath();
+            testfirework.crc2.save();
+        }
+        else if (valueSquare) {
+            //drawing square
+            testfirework.crc2.beginPath();
+            testfirework.crc2.fillRect(mousePositionX - 8, mousePositionY - 8, size, size);
+            testfirework.crc2.fillStyle = color;
+            testfirework.crc2.fill();
+            testfirework.crc2.closePath();
+            testfirework.crc2.save();
+        }
         //drawing circle
         testfirework.crc2.beginPath();
         testfirework.crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);

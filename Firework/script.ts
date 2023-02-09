@@ -13,8 +13,11 @@ namespace testfirework {
     let color: string;
     let size: number;
     let amount: number;
- //   let lifetime: number;
+    //   let lifetime: number;
     let shape: string;
+
+    let valueCircle: string = document.getElementById("circle");
+    let valueSquare: string = document.getElementById("square");
 
 
     window.addEventListener("load", handleLoad);
@@ -41,7 +44,7 @@ namespace testfirework {
         for (let _entry of formData) {
             amount = Number(formData.get("amount"));
             size = Number(formData.get("size"));
-        //    lifetime = Number(formData.get("lifetime"));
+            //    lifetime = Number(formData.get("lifetime"));
             shape = String(formData.get("shape"));
             color = String(formData.get("color-picker"));
 
@@ -58,6 +61,25 @@ namespace testfirework {
                 crc2.fill();
                 crc2.save();
         */
+
+        if (valueCircle) {
+            //drawing circle
+            crc2.beginPath();
+            crc2.arc(mousePositionX, mousePositionY, size, 0, Math.PI * 2);
+            crc2.fillStyle = color;
+            crc2.fill();
+            crc2.closePath();
+            crc2.save();
+
+        } else if (valueSquare) {
+            //drawing square
+            crc2.beginPath();
+            crc2.fillRect(mousePositionX - 8, mousePositionY - 8, size, size);
+            crc2.fillStyle = color;
+            crc2.fill();
+            crc2.closePath();
+            crc2.save();
+        }
 
         //drawing circle
         crc2.beginPath();
