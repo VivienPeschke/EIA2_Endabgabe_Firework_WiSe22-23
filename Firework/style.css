@@ -19,7 +19,7 @@ fieldset{
 
 }
 
-.divSlider{
+.divAmount{
     padding: 15px;
     height: 50px;
 }
@@ -27,6 +27,16 @@ fieldset{
 .divSizes{
     display: inline;
     padding: 15px;
+}
+
+.divShape{
+    padding: 15px;
+
+
+}
+
+.shapes{
+    display: inline-flex;
 }
 
 .divLifetime{
