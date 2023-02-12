@@ -8,10 +8,10 @@
 
 namespace Firework {
 
-    export let url: string = "https://webuser.hs-furtwangen.de/~peschkev/Database/index.php";
+    export let url: string = "https://webuser.hs-furtwangen.de/~peschkev//Database/index.php/";
     export let serverRockets: RocketData[] = [];
     export interface RocketData {
-        duration: number;
+        lifetime: string;
         shape: string;
         color: string;
     }
@@ -29,17 +29,17 @@ namespace Firework {
             }
 
         let query: URLSearchParams = new URLSearchParams();
-        query.set("command", "insert");
-        query.set("collection", "rocket");
+        query.set("command", "update");
+        query.set("collection", "Rockets");
 
         if (rs1 == true) {
-            query.set("id", "Rocket1");
+            query.set("id", "63e93c8bd886d");
         } else if (rs2 == true) {
-            query.set("id", "Rocket2");
+            query.set("id", "63e93ca18cd28");
         } else if (rs3 == true) {
-            query.set("id", "Rocket3");
+            query.set("id", "63e93caf478bd");
         } else if (rs4 == true) {
-            query.set("id", "Rocket4");
+            query.set("id", "63e93cb8e4603");
         }
 
         query.set("data", JSON.stringify(json));
@@ -61,41 +61,46 @@ namespace Firework {
     export async function getSavedRocket(): Promise<any> {
 
         serverRockets.splice(0, serverRockets.length);
-
-
-        let response: Response = await fetch(url + "?command=find&collection=rocket");
+        let response: Response = await fetch(url + "?command=find&collection=Rockets");
         let item: string = await response.text();
-        // tslint:disable-next-line: no-any
         let data: any = JSON.parse(item);
         //key = ID 
         for (let key in data["data"]) {
             serverRockets.push(data["data"][key]);
-
-            // let test: any = data.data[key];
         }
-        console.log(serverRockets);
+
+        let lifetime: HTMLInputElement = <HTMLInputElement>document.getElementById("lifetime");
+        let color: HTMLInputElement = <HTMLInputElement>document.getElementById("color");
+        let shape: HTMLInputElement = <HTMLInputElement>document.getElementById("shape");
 
         if (rs1 == true) {
-            let rocketOneData: RocketData = serverRockets[0];
-            console.log(rocketOneData.duration);
-            console.log(rocketOneData[0]);
+            //zugriff auf Database
+            let r1: RocketData = serverRockets[0];
+            lifetime.value = r1.lifetime;
+            color.value = r1.color;
+            shape.value = r1.shape;
 
         } else if (rs2 == true) {
-            let rocketTwoData: RocketData = serverRockets[1];
-            console.log(rocketTwoData);
+            let r2: RocketData = serverRockets[1];
+            lifetime.value = r2.lifetime;
+            color.value = r2.color;
+            shape.value = r2.shape;
 
         } else if (rs3 == true) {
-            let rocketThreeData: RocketData = serverRockets[2];
-            console.log(rocketThreeData);
+            let r3: RocketData = serverRockets[2];
+            lifetime.value = r3.lifetime;
+            color.value = r3.color;
+            shape.value = r3.shape;
 
         } else if (rs4 == true) {
-            let rocketFourData: RocketData = serverRockets[3];
-            console.log(rocketFourData);
+            let r4: RocketData = serverRockets[3];
+            lifetime.value = r4.lifetime;
+            color.value = r4.color;
+            shape.value = r4.shape;
 
         }
 
         return serverRockets;
-
 
 
     }

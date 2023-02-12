@@ -33,6 +33,7 @@ var Firework;
         Firework.canvas = document.getElementsByTagName("canvas")[0];
         Firework.crc2 = Firework.canvas.getContext("2d");
         window.setInterval(animateRocket, 20);
+        Firework.getSavedRocket();
     }
     //Ausführen der Kreation
     function createRocket(_event) {
@@ -45,7 +46,7 @@ var Firework;
         //Auslesen der Werte im FormData Element der HTML
         for (let entry of formData) {
             lifetime = Number(formData.get("lifetime"));
-            color = String(formData.get("color-picker"));
+            color = String(formData.get("color"));
             shape = String(formData.get("shape"));
             //console.log(entry[0]);
         }
@@ -76,7 +77,7 @@ var Firework;
         let formData = new FormData(document.forms[0]);
         for (let {} of formData) {
             lifetime = Number(formData.get("lifetime"));
-            color = String(formData.get("color-picker"));
+            color = String(formData.get("color"));
             shape = String(formData.get("shape"));
             //console.log(entry[1]);
         }

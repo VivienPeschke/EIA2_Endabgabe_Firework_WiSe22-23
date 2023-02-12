@@ -6,7 +6,7 @@
     */
 var Firework;
 (function (Firework) {
-    Firework.url = "https://webuser.hs-furtwangen.de/~peschkev/Database/index.php";
+    Firework.url = "https://webuser.hs-furtwangen.de/~peschkev//Database/index.php/";
     Firework.serverRockets = [];
     async function sendData(_formData) {
         let json = {};
@@ -16,19 +16,19 @@ var Firework;
                 json[key] = values.length > 1 ? values : values[0];
             }
         let query = new URLSearchParams();
-        query.set("command", "insert");
-        query.set("collection", "rocket");
+        query.set("command", "update");
+        query.set("collection", "Rockets");
         if (Firework.rs1 == true) {
-            query.set("id", "Rocket1");
+            query.set("id", "63e93c8bd886d");
         }
         else if (Firework.rs2 == true) {
-            query.set("id", "Rocket2");
+            query.set("id", "63e93ca18cd28");
         }
         else if (Firework.rs3 == true) {
-            query.set("id", "Rocket3");
+            query.set("id", "63e93caf478bd");
         }
         else if (Firework.rs4 == true) {
-            query.set("id", "Rocket4");
+            query.set("id", "63e93cb8e4603");
         }
         query.set("data", JSON.stringify(json));
         let response = await fetch(Firework.url + "?" + query.toString());
@@ -45,32 +45,40 @@ var Firework;
     // tslint:disable-next-line: no-any
     async function getSavedRocket() {
         Firework.serverRockets.splice(0, Firework.serverRockets.length);
-        let response = await fetch(Firework.url + "?command=find&collection=rocket");
+        let response = await fetch(Firework.url + "?command=find&collection=Rockets");
         let item = await response.text();
-        // tslint:disable-next-line: no-any
         let data = JSON.parse(item);
         //key = ID 
         for (let key in data["data"]) {
             Firework.serverRockets.push(data["data"][key]);
-            // let test: any = data.data[key];
         }
-        console.log(Firework.serverRockets);
+        let lifetime = document.getElementById("lifetime");
+        let color = document.getElementById("color");
+        let shape = document.getElementById("shape");
         if (Firework.rs1 == true) {
-            let rocketOneData = Firework.serverRockets[0];
-            console.log(rocketOneData.duration);
-            console.log(rocketOneData[0]);
+            //zugriff auf Database
+            let r1 = Firework.serverRockets[0];
+            lifetime.value = r1.lifetime;
+            color.value = r1.color;
+            shape.value = r1.shape;
         }
         else if (Firework.rs2 == true) {
-            let rocketTwoData = Firework.serverRockets[1];
-            console.log(rocketTwoData);
+            let r2 = Firework.serverRockets[1];
+            lifetime.value = r2.lifetime;
+            color.value = r2.color;
+            shape.value = r2.shape;
         }
         else if (Firework.rs3 == true) {
-            let rocketThreeData = Firework.serverRockets[2];
-            console.log(rocketThreeData);
+            let r3 = Firework.serverRockets[2];
+            lifetime.value = r3.lifetime;
+            color.value = r3.color;
+            shape.value = r3.shape;
         }
         else if (Firework.rs4 == true) {
-            let rocketFourData = Firework.serverRockets[3];
-            console.log(rocketFourData);
+            let r4 = Firework.serverRockets[3];
+            lifetime.value = r4.lifetime;
+            color.value = r4.color;
+            shape.value = r4.shape;
         }
         return Firework.serverRockets;
     }

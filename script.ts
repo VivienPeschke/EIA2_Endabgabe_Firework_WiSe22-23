@@ -47,6 +47,8 @@ namespace Firework {
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
         window.setInterval(animateRocket, 20);
+
+        getSavedRocket();
     }
 
     //Ausführen der Kreation
@@ -63,7 +65,7 @@ namespace Firework {
         //Auslesen der Werte im FormData Element der HTML
         for (let entry of formData) {
             lifetime = Number(formData.get("lifetime"));
-            color = String(formData.get("color-picker"));
+            color = String(formData.get("color"));
             shape = String(formData.get("shape"));
 
             //console.log(entry[0]);
@@ -103,7 +105,7 @@ namespace Firework {
 
         for (let {} of formData) {
             lifetime = Number(formData.get("lifetime"));
-            color = String(formData.get("color-picker"));
+            color = String(formData.get("color"));
             shape = String(formData.get("shape"));
 
             //console.log(entry[1]);
