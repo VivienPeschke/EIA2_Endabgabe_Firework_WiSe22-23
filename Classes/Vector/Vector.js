@@ -15,9 +15,6 @@ var Firework;
             this.x += _addend.x;
             this.y += _addend.y;
         }
-        copy() {
-            return new Vector(this.x, this.y);
-        }
     }
     Firework.Vector = Vector;
 })(Firework || (Firework = {}));

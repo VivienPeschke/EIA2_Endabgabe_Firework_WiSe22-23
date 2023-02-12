@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="../Classes/Vector/Vector.js"></script>
+    <script src="../Classes/Rocket/Rocket.js"></script>
+    <script src="../Classes/Particle/Particle.js"></script>
+    <script src="../Classes/Circle/Circle.js"></script>
+    <script src="../Classes/Square/Square.js"></script>
+    <script src="../Server/Server.js"></script>
+    <title>Firework_End</title>
+</head>
+
+<body>
+    <h1 id="title">Create your firework!</h1>
+    <div id="divCanvas">
+        <canvas id="canvas" width="900" height="600">
+        </canvas>
+
+    </div>
+
+    <div id="settings">
+        <form method="get">
+            <fieldset>
+                <div class="divLifetime">
+                    <label for="lifetime">lifetime of your firework:</label><br>
+                    <input name="lifetime" type="range" id="size" min="5" max="25" value="10" step="5" class="slider">
+                    <br>
+                    <label for="size">short - long</label>
+                </div>
+
+                <div class="divSizes">
+                    <label for="size">size of your particles:</label><br>
+                    <input name="size" type="range" id="size" min="5" max="25" value="10" step="5" class="slider">
+                    <br>
+                    <label for="size">small - big</label>
+                </div>
+
+                <div class="divShape">
+                    <label for="shape">shape of your particles:</label><br>
+                    <input name="shape" type="radio" id="shape" value="circle" id="circle" checked>
+                    <input name="shape" type="radio" id="shape" value="square" id="square">
+                    <br>
+                    <label for="shape">circle</label>
+                    <label for="shape">square</label>
+                </div>
+
+                <div class="divColor">
+                    color of your firework: <br>
+                    <input name="color-picker" type="color" id="color-picker" value="#00C1FF">
+                </div>
+        </form>
+
+
+        <div id="divSave">
+            <button type="submit" id="buttonSave" class="button">save</button>
+        </div>
+
+        <div id="divRockets">
+            <button type="button" id="rs1" class="button">Rocket 1</button>
+            <br>
+            <button type="button" id="rs2" class="button">Rocket 2</button>
+            <br>
+            <button type="button" id="rs3" class="button">Rocket 3</button>
+            <br>
+            <button type="button" id="rs4" class="button">Rocket 4</button>
+        </div>
+
+        </fieldset>
+    </div>
+
+</body>
+
+</html>

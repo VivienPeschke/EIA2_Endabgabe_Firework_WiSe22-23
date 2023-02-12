@@ -6,6 +6,7 @@ body{
 
 canvas{
     background-color: black;
+    display: inline-block;
 
 }
 
@@ -19,9 +20,9 @@ fieldset{
 
 }
 
-.divAmount{
+.divLifetime{
+    display: inline;
     padding: 15px;
-    height: 50px;
 }
 
 .divSizes{
@@ -30,6 +31,7 @@ fieldset{
 }
 
 .divShape{
+    display: inline-block;
     padding: 15px;
 
 
@@ -52,9 +54,9 @@ fieldset{
 
 .button{
     width: 70px;
-    padding: 10px;
+    padding: 5px;
     margin: 5px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 10px;
     border-color: #00C1FF;
 }
