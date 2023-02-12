@@ -1,3 +1,10 @@
+/*
+    * Name: Vivien Peschke
+    * Matrikel: 270154
+    * Datum: 12.02.2023
+    * Quellen: In Zusammenarbeit mit Ann-Kathrin Pfeffer, Cara Brüggendieck und Henning Pils
+    */
+
 namespace Firework {
 
     export class Square extends Particle {

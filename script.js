@@ -1,7 +1,7 @@
-/**
+/*
     * Name: Vivien Peschke
     * Matrikel: 270154
-    * Datum: 08.02.2023
+    * Datum: 12.02.2023
     * Quellen: In Zusammenarbeit mit Ann-Kathrin Pfeffer, Cara Brüggendieck und Henning Pils
     */
 var Firework;
@@ -47,7 +47,7 @@ var Firework;
             lifetime = Number(formData.get("lifetime"));
             color = String(formData.get("color-picker"));
             shape = String(formData.get("shape"));
-            console.log(entry[0]);
+            //console.log(entry[0]);
         }
         let rocketPosition = new Firework.Vector(mousePositionX, mousePositionY);
         let rocketCreated = new Firework.Rocket(lifetime, color, shape, rocketPosition);
@@ -59,7 +59,7 @@ var Firework;
         //animateRocket(mousePositionX, mousepositionY, lifetime, color, radius, opacity, speed, shape);
     }
     function animateRocket() {
-        // crc2.clearRect(0, 0, canvas.width, canvas.height);
+        Firework.crc2.clearRect(0, 0, Firework.canvas.width, Firework.canvas.height);
         if (rocket.length > 0) {
             for (let i = 0; i < rocket.length; i++) {
                 if (rocket[i].particles.length != 0) {

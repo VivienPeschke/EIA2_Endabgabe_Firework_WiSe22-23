@@ -1,19 +1,23 @@
+/*
+    * Name: Vivien Peschke
+    * Matrikel: 270154
+    * Datum: 12.02.2023
+    * Quellen: In Zusammenarbeit mit Ann-Kathrin Pfeffer, Cara Brüggendieck und Henning Pils
+    */
+
+
 namespace Firework {
 
-    export let url: string = "https://webuser.hs-furtwangen.de/~peschkev/Database/Rockets.json";
+    export let url: string = "https://webuser.hs-furtwangen.de/~peschkev/Database/index.php";
     export let serverRockets: RocketData[] = [];
     export interface RocketData {
-        lifetime: number;
-        color: string;
+        duration: number;
         shape: string;
+        color: string;
     }
 
-
-
-    //Daten werden dem Server zugeschickt 
     export async function sendData(_formData: FormData): Promise<void> {
 
-        //Umwandlung der FormData ins Json Format
         interface FormDataJSON {
             [key: string]: FormDataEntryValue | FormDataEntryValue[];
         }
@@ -24,26 +28,22 @@ namespace Firework {
                 json[key] = values.length > 1 ? values : values[0];
             }
 
-        //erzeugt URL query Befehl für Server
         let query: URLSearchParams = new URLSearchParams();
         query.set("command", "insert");
-        query.set("collection", "Rockets");
+        query.set("collection", "rocket");
 
-        //je nach ausgewählter Raktete wird auf eine andere ID zugegriffen und diese geupdatet
         if (rs1 == true) {
-            query.set("id", "63e827320e7d9");
+            query.set("id", "Rocket1");
         } else if (rs2 == true) {
-            query.set("id", "63e82b5f4908e");
+            query.set("id", "Rocket2");
         } else if (rs3 == true) {
-            query.set("id", "63e82b6e1db86");
+            query.set("id", "Rocket3");
         } else if (rs4 == true) {
-            query.set("id", "63e82b767523d");
+            query.set("id", "Rocket4");
         }
+
         query.set("data", JSON.stringify(json));
 
-
-
-        //Konsolenbefehl zur Überprüfung der URL
         let response: Response = await fetch(url + "?" + query.toString());
         console.log(response);
         let responseText: string = await response.text();
@@ -55,10 +55,15 @@ namespace Firework {
         }
     }
 
-    // tslint:disable-next-line: no-any
-    export async function handleData(): Promise<any> {
 
-        let response: Response = await fetch(url + "?command=find&collection=Rockets");
+
+    // tslint:disable-next-line: no-any
+    export async function getSavedRocket(): Promise<any> {
+
+        serverRockets.splice(0, serverRockets.length);
+
+
+        let response: Response = await fetch(url + "?command=find&collection=rocket");
         let item: string = await response.text();
         // tslint:disable-next-line: no-any
         let data: any = JSON.parse(item);
@@ -66,51 +71,35 @@ namespace Firework {
         for (let key in data["data"]) {
             serverRockets.push(data["data"][key]);
 
-            // tslint:disable-next-line: no-any
-            let test: any = data.data[key];
-
-            console.log(test);
-
-            //console.log(test.thesize);
+            // let test: any = data.data[key];
         }
+        console.log(serverRockets);
 
         if (rs1 == true) {
-            //zugriff auf Database
-            let r1: RocketData = serverRockets[0];
-            console.log(r1);
+            let rocketOneData: RocketData = serverRockets[0];
+            console.log(rocketOneData.duration);
+            console.log(rocketOneData[0]);
 
         } else if (rs2 == true) {
-            //
+            let rocketTwoData: RocketData = serverRockets[1];
+            console.log(rocketTwoData);
+
         } else if (rs3 == true) {
-            //
+            let rocketThreeData: RocketData = serverRockets[2];
+            console.log(rocketThreeData);
+
         } else if (rs4 == true) {
-            //
+            let rocketFourData: RocketData = serverRockets[3];
+            console.log(rocketFourData);
+
         }
 
         return serverRockets;
 
 
-    }
-
-    //Beim Klicken auf Speicherstand werden Daten auf Settings übertragen
-    export function getSavedRocket(): void {
-
-        serverRockets.splice(0, serverRockets.length);
-        handleData();
-
-        if (rs1 == true) {
-            //zugriff auf Database
-            //type K1 = keyof RocketData[];
-
-        } else if (rs2 == true) {
-            //
-        } else if (rs3 == true) {
-            //
-        } else if (rs4 == true) {
-            //
-        }
-
 
     }
+
+
 
 }

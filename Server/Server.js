@@ -1,8 +1,13 @@
+/*
+    * Name: Vivien Peschke
+    * Matrikel: 270154
+    * Datum: 12.02.2023
+    * Quellen: In Zusammenarbeit mit Ann-Kathrin Pfeffer, Cara Brüggendieck und Henning Pils
+    */
 var Firework;
 (function (Firework) {
-    Firework.url = "https://webuser.hs-furtwangen.de/~peschkev/Database/Rockets.json";
+    Firework.url = "https://webuser.hs-furtwangen.de/~peschkev/Database/index.php";
     Firework.serverRockets = [];
-    //Daten werden dem Server zugeschickt 
     async function sendData(_formData) {
         let json = {};
         for (let key of _formData.keys())
@@ -10,25 +15,22 @@ var Firework;
                 let values = _formData.getAll(key);
                 json[key] = values.length > 1 ? values : values[0];
             }
-        //erzeugt URL query Befehl für Server
         let query = new URLSearchParams();
         query.set("command", "insert");
-        query.set("collection", "Rockets");
-        //je nach ausgewählter Raktete wird auf eine andere ID zugegriffen und diese geupdatet
+        query.set("collection", "rocket");
         if (Firework.rs1 == true) {
-            query.set("id", "63e827320e7d9");
+            query.set("id", "Rocket1");
         }
         else if (Firework.rs2 == true) {
-            query.set("id", "63e82b5f4908e");
+            query.set("id", "Rocket2");
         }
         else if (Firework.rs3 == true) {
-            query.set("id", "63e82b6e1db86");
+            query.set("id", "Rocket3");
         }
         else if (Firework.rs4 == true) {
-            query.set("id", "63e82b767523d");
+            query.set("id", "Rocket4");
         }
         query.set("data", JSON.stringify(json));
-        //Konsolenbefehl zur Überprüfung der URL
         let response = await fetch(Firework.url + "?" + query.toString());
         console.log(response);
         let responseText = await response.text();
@@ -41,53 +43,36 @@ var Firework;
     }
     Firework.sendData = sendData;
     // tslint:disable-next-line: no-any
-    async function handleData() {
-        let response = await fetch(Firework.url + "?command=find&collection=Rockets");
+    async function getSavedRocket() {
+        Firework.serverRockets.splice(0, Firework.serverRockets.length);
+        let response = await fetch(Firework.url + "?command=find&collection=rocket");
         let item = await response.text();
         // tslint:disable-next-line: no-any
         let data = JSON.parse(item);
         //key = ID 
         for (let key in data["data"]) {
             Firework.serverRockets.push(data["data"][key]);
-            // tslint:disable-next-line: no-any
-            let test = data.data[key];
-            console.log(test);
-            //console.log(test.thesize);
+            // let test: any = data.data[key];
         }
+        console.log(Firework.serverRockets);
         if (Firework.rs1 == true) {
-            //zugriff auf Database
-            let r1 = Firework.serverRockets[0];
-            console.log(r1);
+            let rocketOneData = Firework.serverRockets[0];
+            console.log(rocketOneData.duration);
+            console.log(rocketOneData[0]);
         }
         else if (Firework.rs2 == true) {
-            //
+            let rocketTwoData = Firework.serverRockets[1];
+            console.log(rocketTwoData);
         }
         else if (Firework.rs3 == true) {
-            //
+            let rocketThreeData = Firework.serverRockets[2];
+            console.log(rocketThreeData);
         }
         else if (Firework.rs4 == true) {
-            //
+            let rocketFourData = Firework.serverRockets[3];
+            console.log(rocketFourData);
         }
         return Firework.serverRockets;
-    }
-    Firework.handleData = handleData;
-    //Beim Klicken auf Speicherstand werden Daten auf Settings übertragen
-    function getSavedRocket() {
-        Firework.serverRockets.splice(0, Firework.serverRockets.length);
-        handleData();
-        if (Firework.rs1 == true) {
-            //zugriff auf Database
-            //type K1 = keyof RocketData[];
-        }
-        else if (Firework.rs2 == true) {
-            //
-        }
-        else if (Firework.rs3 == true) {
-            //
-        }
-        else if (Firework.rs4 == true) {
-            //
-        }
     }
     Firework.getSavedRocket = getSavedRocket;
 })(Firework || (Firework = {}));
