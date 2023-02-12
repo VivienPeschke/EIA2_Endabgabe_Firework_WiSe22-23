@@ -1,4 +1,3 @@
-"use strict";
 var Firework;
 (function (Firework) {
     Firework.url = "https://webuser.hs-furtwangen.de/~peschkev/Database/Rockets.json";
@@ -13,7 +12,7 @@ var Firework;
             }
         //erzeugt URL query Befehl für Server
         let query = new URLSearchParams();
-        query.set("command", "update");
+        query.set("command", "insert");
         query.set("collection", "Rockets");
         //je nach ausgewählter Raktete wird auf eine andere ID zugegriffen und diese geupdatet
         if (Firework.rs1 == true) {
@@ -78,7 +77,7 @@ var Firework;
         handleData();
         if (Firework.rs1 == true) {
             //zugriff auf Database
-            //  type K1 = keyof RocketData[0];
+            //type K1 = keyof RocketData[];
         }
         else if (Firework.rs2 == true) {
             //

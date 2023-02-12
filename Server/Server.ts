@@ -26,7 +26,7 @@ namespace Firework {
 
         //erzeugt URL query Befehl für Server
         let query: URLSearchParams = new URLSearchParams();
-        query.set("command", "update");
+        query.set("command", "insert");
         query.set("collection", "Rockets");
 
         //je nach ausgewählter Raktete wird auf eine andere ID zugegriffen und diese geupdatet
@@ -100,7 +100,7 @@ namespace Firework {
 
         if (rs1 == true) {
             //zugriff auf Database
-            //  type K1 = keyof RocketData[0];
+            //type K1 = keyof RocketData[];
 
         } else if (rs2 == true) {
             //

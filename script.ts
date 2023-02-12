@@ -11,7 +11,7 @@ namespace Firework {
     export let crc2: CanvasRenderingContext2D;
     export let canvas: HTMLCanvasElement;
 
-    let size: number;
+    let lifetime: number;
     let color: string;
     let shape: string;
     //let radius: number;
@@ -62,7 +62,7 @@ namespace Firework {
 
         //Auslesen der Werte im FormData Element der HTML
         for (let entry of formData) {
-            size = Number(formData.get("size"));
+            lifetime = Number(formData.get("lifetime"));
             color = String(formData.get("color-picker"));
             shape = String(formData.get("shape"));
 
@@ -70,7 +70,7 @@ namespace Firework {
         }
 
         let rocketPosition: Vector = new Vector(mousePositionX, mousePositionY);
-        let rocketCreated: Rocket = new Rocket(size, color, shape, rocketPosition);
+        let rocketCreated: Rocket = new Rocket(lifetime, color, shape, rocketPosition);
 
 
         rocket.push(rocketCreated);
@@ -99,12 +99,10 @@ namespace Firework {
     //Save Button liest Werte der FormData
     export async function saveRocket(_event: Event): Promise<void> {
 
-        console.log("Daten");
-
         let formData: FormData = new FormData(document.forms[0]);
 
         for (let {} of formData) {
-            size = Number(formData.get("size"));
+            lifetime = Number(formData.get("lifetime"));
             color = String(formData.get("color-picker"));
             shape = String(formData.get("shape"));
 
@@ -122,7 +120,8 @@ namespace Firework {
 
     //Farbe des ausgewählten Buttons wird angezeigt
     function clickRocketButton(_event: MouseEvent): void {
-        let eventTarget: EventTarget | null = _event.target;
+
+        let eventTarget: EventTarget = _event.target;
         let button1: HTMLButtonElement = <HTMLButtonElement>document.getElementById("rs1");
         let button2: HTMLButtonElement = <HTMLButtonElement>document.getElementById("rs2");
         let button3: HTMLButtonElement = <HTMLButtonElement>document.getElementById("rs3");

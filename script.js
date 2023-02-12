@@ -1,4 +1,3 @@
-"use strict";
 /**
     * Name: Vivien Peschke
     * Matrikel: 270154
@@ -7,7 +6,7 @@
     */
 var Firework;
 (function (Firework) {
-    let size;
+    let lifetime;
     let color;
     let shape;
     //let radius: number;
@@ -45,13 +44,13 @@ var Firework;
         let formData = new FormData(document.forms[0]);
         //Auslesen der Werte im FormData Element der HTML
         for (let entry of formData) {
-            size = Number(formData.get("size"));
+            lifetime = Number(formData.get("lifetime"));
             color = String(formData.get("color-picker"));
             shape = String(formData.get("shape"));
             console.log(entry[0]);
         }
         let rocketPosition = new Firework.Vector(mousePositionX, mousePositionY);
-        let rocketCreated = new Firework.Rocket(size, color, shape, rocketPosition);
+        let rocketCreated = new Firework.Rocket(lifetime, color, shape, rocketPosition);
         rocket.push(rocketCreated);
         //Zur Kontrolle, ob die richtigen Werte ausgelesen und übertragen bzw. mitgegeben wurden
         console.log(rocketCreated);
@@ -74,10 +73,9 @@ var Firework;
     }
     //Save Button liest Werte der FormData
     async function saveRocket(_event) {
-        console.log("Daten");
         let formData = new FormData(document.forms[0]);
         for (let {} of formData) {
-            size = Number(formData.get("size"));
+            lifetime = Number(formData.get("lifetime"));
             color = String(formData.get("color-picker"));
             shape = String(formData.get("shape"));
             //console.log(entry[1]);

@@ -1,4 +1,3 @@
-"use strict";
 var Firework;
 (function (Firework) {
     class Square extends Firework.Particle {
